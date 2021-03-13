@@ -30,14 +30,14 @@ fn main() {
     let pattern_regex = regex::Regex::new(str_pattern)
         .expect("invalid regex pattern");
 
-    find_files("./", &|path: &str| {
+    find_files(path, &|path: &str| {
         let res = fs::read_to_string(path);
         if let Ok(content) = res {
             let replaced_content = pattern_regex.replace_all(
                 &content,
                 replace
             );
-            fs::write(path, replaced_content.to_string());
+            fs::write(path, replaced_content.to_string()).expect("Cannot write");
         }
     });
 }
