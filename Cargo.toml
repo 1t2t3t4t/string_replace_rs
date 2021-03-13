@@ -8,3 +8,6 @@ edition = "2018"
 
 [dependencies]
 regex = "1.4.3"
+
+[profile.release]
+lto = true          # Enable Link Time Optimization
